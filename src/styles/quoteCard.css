@@ -19,6 +19,8 @@
 }
 .quoteCard > p {
     font-weight: bold;
+    transition: 500;
+    height: 1.5em;
 }
 
 .quoteCard:first-child {

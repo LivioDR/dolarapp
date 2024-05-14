@@ -1,0 +1,25 @@
+{
+    "theme_color":"#15002a",
+    "background_color":"#15002a",
+    "icons":
+    [
+        {
+            "purpose":"maskable",
+            "sizes":"512x512",
+            "src":"icon512_maskable.png",
+            "type":"image/png"
+        },
+        {
+            "purpose":"any",
+            "sizes":"512x512",
+            "src":"icon512_rounded.png",
+            "type":"image/png"}
+    ],
+    "orientation":"portrait",
+    "display":"standalone",
+    "dir":"auto",
+    "lang":"es-US",
+    "name":"Dolar App",
+    "short_name":" Dolar App",
+    "start_url":"/",
+    "description":"Cotizacion del dolar en Argentina"}

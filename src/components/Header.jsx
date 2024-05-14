@@ -1,18 +1,14 @@
 import Image from "next/image"
 import { Shrikhand } from "next/font/google";
+import '../styles/header.css'
 
 
 const danfo = Shrikhand({ subsets: ["latin"], weight: '400' });
-const fontStyle = {
-    fontSize: 'xxx-large',
-    margin: '2%',
-    color: 'white'
-}
 
 const headerStyle = {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'flex-start',
+    justifyContent: 'space-evenly',
     alignItems: 'center',
     width: '100%',
     height: '15vh',
@@ -31,7 +27,7 @@ const Header = () => {
             width={100}
             height={100}
             />
-            <h1 className={danfo.className} style={fontStyle}>
+            <h1 className={`${danfo.className} headerText`}>
                 DolarApp
             </h1>
         </div>

@@ -11,7 +11,7 @@ const QuoteCard = (props) => {
     const [delta, setDelta] = useState(props.variation)
     const [deltaStyle, setDeltaStyle] = useState({backgroundColor:`rgba(${delta < 0? 0 : 255}, ${delta >= 0 ? 0 : 255}, 0, 0)`, color: 'white'})
 
-    const debug = false
+    const debug = true
 
     useEffect(()=>{
         if(debug){

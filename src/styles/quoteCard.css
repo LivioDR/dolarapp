@@ -17,6 +17,9 @@
 .quoteCard > h1, .quoteCard > p {
     font-size: small;
 }
+.quoteCard > p {
+    font-weight: bold;
+}
 
 .quoteCard:first-child {
     width: 90vw;

@@ -5,22 +5,9 @@ import '../styles/header.css'
 
 const danfo = Shrikhand({ subsets: ["latin"], weight: '400' });
 
-const headerStyle = {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
-    alignItems: 'center',
-    width: '100%',
-    height: '15vh',
-    margin: '0%',
-    paddingLeft: '2%',
-    paddingTop: '2%',
-    backgroundColor: 'black',
-}
-
 const Header = () => {
     return(
-        <div style={headerStyle}>
+        <div id='headerContainer'>
             <Image
             src='/benjamin-franklin.png'
             alt='Benjamin Franklin cartoon'

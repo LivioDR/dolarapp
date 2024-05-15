@@ -4,6 +4,7 @@ import React,{useEffect, useState} from "react";
 import QuoteCard from "@/components/QuoteCard";
 import getDolarQuotes from "@/services/dolarFetch";
 import Loading from "@/components/Loading";
+import appConfig from "@/app/config/appConfig";
 
 const quotesContainerStyle = {
     display: 'flex',
@@ -32,9 +33,11 @@ const QuotesPage = () => {
             const resp = await getDolarQuotes().then(res => {res = swapBlue(res); setQuotes(res)})
         }
         getQuotes()
-        setInterval(()=>{
-            getQuotes()
-        }, 15000)
+        if(appConfig.autoRefresh){
+            setInterval(()=>{
+                getQuotes()
+            }, appConfig.refreshTimeMs)
+        }
     },[])
 
     useEffect(()=> {

@@ -12,7 +12,14 @@ const Header = () => {
     const [currency, setCurrency] = useState('')
 
     useEffect(()=>{
-        setCurrency(localStorage.getItem("currency"))
+        const curr = localStorage.getItem("currency") 
+        if(curr){
+            setCurrency(curr)
+        }
+        else{
+            setCurrency("USD")
+        }
+
     },[])
 
 

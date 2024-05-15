@@ -1,5 +1,9 @@
 const baseUrl = 'https://criptoya.com/api/dolar'
 
+const getLastUpdate = async() => {
+    let response = await fetch(baseUrl).then(res => res.json)
+}
+
 const getDolarQuotes = async() => {
     let response = await fetch(baseUrl).then(res => res.json())
 
@@ -8,34 +12,42 @@ const getDolarQuotes = async() => {
         {   name: 'mayorista',
             price: response.mayorista.price,
             variation: response.mayorista.variation,
+            lastUpdate: response.mayorista.timestamp,
         },
         {   name: 'oficial',
             price: response.oficial.price,
             variation: response.oficial.variation,
+            lastUpdate: response.oficial.timestamp,
         },
         {   name: 'ahorro',
             price: response.ahorro.ask,
             variation: response.ahorro.variation,
+            lastUpdate: response.ahorro.timestamp,
         },
         {   name: 'tarjeta',
             price: response.tarjeta.price,
             variation: response.tarjeta.variation,
+            lastUpdate: response.tarjeta.timestamp,
         },
         {   name: 'blue',
             price: response.blue.ask,
             variation: response.blue.variation,
+            lastUpdate: response.blue.timestamp,
         },
         {   name: 'cripto',
             price: response.cripto.usdt.ask,
             variation: response.cripto.usdt.variation,
+            lastUpdate: response.cripto.usdt.timestamp,
         },
         {   name: 'mep',
             price: response.mep.al30['48hs'].price,
             variation: response.mep.al30['48hs'].variation,
+            lastUpdate: response.mep.al30['48hs'].timestamp,
         },
         {   name: 'ccl',
             price: response.ccl.gd30['48hs'].price,
             variation: response.ccl.gd30['48hs'].variation,
+            lastUpdate: response.ccl.gd30['48hs'].timestamp,
         }
     ]
     return dolarObj

@@ -1,5 +1,6 @@
 'use client'
 import React,{useEffect, useState} from "react";
+import '../styles/quotesPage.css'
 import QuoteCard from "@/components/QuoteCard";
 import {getDolarQuotes, getCanadianDolarQuotes, getAustralianDolarQuotes} from "@/services/dolarFetch";
 import Loading from "@/components/Loading";
@@ -20,12 +21,21 @@ const QuotesPage = () => {
     const [quotes, setQuotes] = useState([])
     const [loading, setLoading] = useState(true)
     const [currency, setCurrency] = typeof window !== "undefined" ? useState(localStorage.getItem('currency')||"USD") : useState('USD')
+    const [lastUpdate, setLastUpdate] = useState('')
     
     const swapBlue = (arr) => {
         let blueValue = arr.filter(q => q.name === 'blue')
         arr.splice(arr.indexOf(...blueValue),1)
         arr.unshift(...blueValue)
         return arr
+    }
+
+    const getLastUpdate = () => {
+        let arr = [...quotes]
+        arr.sort((a,b) => b.lastUpdate - a.lastUpdate )
+        let date = new Date(arr[0].lastUpdate)
+        let dateString = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()} GMT-03:00`
+        setLastUpdate(dateString)
     }
 
     useEffect(()=>{
@@ -54,6 +64,7 @@ const QuotesPage = () => {
     useEffect(()=> {
         if(quotes.length > 0){
             setLoading(false)
+            getLastUpdate()
         }
         else(
             setLoading(true)
@@ -66,6 +77,7 @@ const QuotesPage = () => {
             <>
             <div className="quotesContainer" style={quotesContainerStyle}>
                 {quotes.map((quote) => <QuoteCard key={quote.name} id={quote.name} title={quote.name} price={quote.price} variation={quote.variation}></QuoteCard>)}
+                <p id='lastUpdate'>Last update: {lastUpdate}</p>
             </div>
             </>
         )

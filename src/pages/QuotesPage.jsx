@@ -2,7 +2,7 @@
 
 import React,{useEffect, useState} from "react";
 import QuoteCard from "@/components/QuoteCard";
-import getDolarQuotes from "@/services/dolarFetch";
+import {getDolarQuotes, getCanadianDolarQuotes, getAustralianDolarQuotes} from "@/services/dolarFetch";
 import Loading from "@/components/Loading";
 import appConfig from "@/app/config/appConfig";
 
@@ -20,6 +20,7 @@ const QuotesPage = () => {
     
     const [quotes, setQuotes] = useState([])
     const [loading, setLoading] = useState(true)
+    const [currency, setCurrency] = useState(localStorage.getItem('currency')||"USD")
     
     const swapBlue = (arr) => {
         let blueValue = arr.filter(q => q.name === 'blue')
@@ -30,7 +31,22 @@ const QuotesPage = () => {
 
     useEffect(()=>{
         const getQuotes = async() => {
-            const resp = await getDolarQuotes().then(res => {res = swapBlue(res); setQuotes(res)})
+
+            setCurrency(localStorage.getItem('currency'))
+            console.log("The currency is now " + currency)
+
+            if(!currency || currency == "USD"){
+                const resp = await getDolarQuotes().then(res => {res = swapBlue(res); setQuotes(res)})
+                console.log("fetched usd")
+            }
+            else if(currency == "CAD"){
+                const resp = await getCanadianDolarQuotes().then(res => {res = swapBlue(res); setQuotes(res)})
+                console.log("fetched cad")
+            }
+            else if(currency == "AUD"){
+                const resp = await getAustralianDolarQuotes().then(res => {res = swapBlue(res); setQuotes(res)})
+                console.log("fetched aud")
+            }
         }
         getQuotes()
         if(appConfig.autoRefresh){

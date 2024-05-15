@@ -1,5 +1,5 @@
 const appConfig = {
-    debug: true,
+    debug: false,
     autoRefresh: true,
     refreshTimeMs: 15000,
 }

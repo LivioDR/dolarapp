@@ -1,5 +1,4 @@
 'use client'
-
 import React,{useEffect, useState} from "react";
 import QuoteCard from "@/components/QuoteCard";
 import {getDolarQuotes, getCanadianDolarQuotes, getAustralianDolarQuotes} from "@/services/dolarFetch";
@@ -20,7 +19,7 @@ const QuotesPage = () => {
     
     const [quotes, setQuotes] = useState([])
     const [loading, setLoading] = useState(true)
-    const [currency, setCurrency] = useState(localStorage.getItem('currency')||"USD")
+    const [currency, setCurrency] = typeof window !== "undefined" ? useState(localStorage.getItem('currency')||"USD") : useState('USD')
     
     const swapBlue = (arr) => {
         let blueValue = arr.filter(q => q.name === 'blue')

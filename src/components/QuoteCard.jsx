@@ -1,10 +1,16 @@
 'use client'
 import '../styles/quoteCard.css'
 import { useState, useEffect } from 'react'
+import appConfig from '@/app/config/appConfig'
+import { Shrikhand } from 'next/font/google'
+const customFont = Shrikhand({weight: '400', subsets: ['latin']})
 
 
 const QuoteCard = (props) => {
     
+    // get the viewport width to switch fonts
+    const viewport = window.innerWidth
+
     const title = props.title
     const [price, setPrice] = useState(props.price)
     const [priceStyle, setPriceStyle] = useState({backgroundColor: 'rgba(255, 255, 255, 0)'})
@@ -14,7 +20,7 @@ const QuoteCard = (props) => {
     const debug = true
 
     useEffect(()=>{
-        if(debug){
+        if(appConfig.debug){
             setInterval(()=>{
                 setPrice(price + Math.random()*100)
                 setDelta(delta + Math.random()*10 - 5)
@@ -54,9 +60,9 @@ const QuoteCard = (props) => {
     return(
         <>
         <div className="quoteCard">
-            <h1 className="quoteTitle">{title.toUpperCase()}</h1>
-            <h2 className="quotePrice" style={priceStyle}>$ {price.toFixed(2)}</h2>
-            <p style={deltaStyle}>{delta > 0 ? '▲' : '▼'} {delta.toFixed(2)} %</p>
+            <h1 className={`quoteTitle ${viewport >= 600 ? customFont.className : ''}`}>{title.toUpperCase()}</h1>
+            <h2 className="quotePrice" style={priceStyle}>${price.toFixed(2)}</h2>
+            <p style={deltaStyle}>{delta > 0 ? '▲' : '▼'} {String(delta.toFixed(2)).replace('-','')}%</p>
         </div>
         </>
     )

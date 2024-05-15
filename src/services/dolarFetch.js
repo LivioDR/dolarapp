@@ -64,12 +64,12 @@ const getCanadianDolarQuotes = async() => {
 }
 
 const getAustralianDolarQuotes = async() => {
-    let cadQuotes = getCanadianDolarQuotes()
+    let cadQuotes = await getCanadianDolarQuotes()
     
     const fxAUDCAD = Number(await getFxCadAud())
 
     for(let i=0; i<cadQuotes.length; i++){
-        cadQuotes[i].price /= fxAUDCAD
+        cadQuotes[i].price *= fxAUDCAD
     }
 
     return cadQuotes

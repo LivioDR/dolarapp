@@ -33,19 +33,15 @@ const QuotesPage = () => {
         const getQuotes = async() => {
 
             setCurrency(localStorage.getItem('currency'))
-            console.log("The currency is now " + currency)
 
             if(!currency || currency == "USD"){
                 const resp = await getDolarQuotes().then(res => {res = swapBlue(res); setQuotes(res)})
-                console.log("fetched usd")
             }
             else if(currency == "CAD"){
                 const resp = await getCanadianDolarQuotes().then(res => {res = swapBlue(res); setQuotes(res)})
-                console.log("fetched cad")
             }
             else if(currency == "AUD"){
                 const resp = await getAustralianDolarQuotes().then(res => {res = swapBlue(res); setQuotes(res)})
-                console.log("fetched aud")
             }
         }
         getQuotes()

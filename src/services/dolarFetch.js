@@ -40,14 +40,14 @@ const getDolarQuotes = async() => {
             lastUpdate: response.cripto.usdt.timestamp,
         },
         {   name: 'mep',
-            price: response.mep.al30['48hs'].price,
-            variation: response.mep.al30['48hs'].variation,
-            lastUpdate: response.mep.al30['48hs'].timestamp,
+            price: response.mep.al30['24hs'].price,
+            variation: response.mep.al30['24hs'].variation,
+            lastUpdate: response.mep.al30['24hs'].timestamp,
         },
         {   name: 'ccl',
-            price: response.ccl.gd30['48hs'].price,
-            variation: response.ccl.gd30['48hs'].variation,
-            lastUpdate: response.ccl.gd30['48hs'].timestamp,
+            price: response.ccl.gd30['24hs'].price,
+            variation: response.ccl.gd30['24hs'].variation,
+            lastUpdate: response.ccl.gd30['24hs'].timestamp,
         }
     ]
     return dolarObj

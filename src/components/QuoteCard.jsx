@@ -1,6 +1,6 @@
 'use client'
 import '../styles/quoteCard.css'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import appConfig from '@/app/config/appConfig'
 import { Shrikhand } from 'next/font/google'
 const customFont = Shrikhand({weight: '400', subsets: ['latin']})
@@ -16,16 +16,18 @@ const QuoteCard = (props) => {
     const [priceStyle, setPriceStyle] = useState({backgroundColor: 'rgba(255, 255, 255, 0)'})
     const [delta, setDelta] = useState(props.variation)
     const [deltaStyle, setDeltaStyle] = useState({backgroundColor:`rgba(${delta < 0? 0 : 255}, ${delta >= 0 ? 0 : 255}, 0, 0)`, color: 'white'})
-
-    const debug = true
+    const demoTimerRef = useRef()
 
     useEffect(()=>{
         if(appConfig.debug){
-            setInterval(()=>{
+            const demoInterval = setInterval(()=>{
                 setPrice(price + Math.random()*100)
                 setDelta(delta + Math.random()*10 - 5)
             },5000+Math.random()*2000)
-    
+            demoTimerRef.current = demoInterval
+        }
+        return () => {
+            clearInterval(demoTimerRef.current)
         }
     },[])
 

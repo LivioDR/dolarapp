@@ -1,5 +1,3 @@
-'use client'
-import { useState, useEffect } from "react";
 import Image from "next/image"
 import { Shrikhand } from "next/font/google";
 import '../styles/header.css'
@@ -7,44 +5,19 @@ import '../styles/header.css'
 
 const danfo = Shrikhand({ subsets: ["latin"], weight: '400' });
 
-const Header = () => {
-
-    const [currency, setCurrency] = useState('')
-
-    useEffect(()=>{
-        const curr = localStorage.getItem("currency") 
-        if(curr){
-            setCurrency(curr)
-        }
-        else{
-            setCurrency("USD")
-        }
-
-    },[])
-
+const Header = ({currency, setCurrency}) => {
 
     const toggleCurrency = () => {
-        if(currency){
-            if(currency == 'USD'){
-                localStorage.setItem('currency','CAD')
-                setCurrency("CAD")
-            }
-            else if(currency == 'CAD'){
-                localStorage.setItem('currency','AUD')
-                setCurrency("AUD")
-            }
-            else{
-                localStorage.setItem('currency','USD')
-                setCurrency("USD")
-            }
+        if(currency == 'USD'){
+            setCurrency("CAD")
+        }
+        else if(currency == 'CAD'){
+            setCurrency("AUD")
         }
         else{
-            localStorage.setItem('currency','USD')
             setCurrency("USD")
         }
-        location.reload()
     }
-
 
     return(
         <div id='headerContainer' onClick={toggleCurrency}>

@@ -22,22 +22,8 @@ const QuotesPage = () => {
     const [loading, setLoading] = useState(true)
     const [currency, setCurrency] = typeof window !== "undefined" ? useState(localStorage.getItem('currency')||"USD") : useState('USD')
     const [lastUpdate, setLastUpdate] = useState('')
-    const demoTimerRef = useRef()
     const autoRefreshRef = useRef()
 
-    useEffect(()=>{
-        if(appConfig.debug){
-            const demoInterval = setInterval(()=>{
-                setPrice(price + Math.random()*100)
-                setDelta(delta + Math.random()*10 - 5)
-            },5000+Math.random()*2000)
-            demoTimerRef.current = demoInterval
-        }
-        return () => {
-            clearInterval(demoTimerRef.current)
-        }
-    },[])
-    
     const swapBlue = (arr) => {
         let blueValue = arr.filter(q => q.name === 'blue')
         arr.splice(arr.indexOf(...blueValue),1)

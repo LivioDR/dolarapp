@@ -18,8 +18,6 @@ const QuoteCard = (props) => {
     const [deltaStyle, setDeltaStyle] = useState({backgroundColor:`rgba(${delta < 0? 0 : 255}, ${delta >= 0 ? 0 : 255}, 0, 0)`, color: 'white'})
     const timerRef = useRef()
 
-    const debug = true
-
     useEffect(()=>{
         if(appConfig.debug){
             const demoInterval = setInterval(()=>{

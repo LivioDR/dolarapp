@@ -1,6 +1,6 @@
 const appConfig = {
     debug: false,
     autoRefresh: true,
-    refreshTimeMs: 15000,
+    refreshTimeMs: 5000,
 }
 export default appConfig

@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <main>
         <Header currency={currency} setCurrency={setCurrency}/>
-        <QuotesPage currency={currency}/>
+        <QuotesPage key={currency} currency={currency}/>
         <Footer currency={currency}/>
     </main>
   );

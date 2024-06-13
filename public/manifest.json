@@ -19,7 +19,7 @@
     "display":"standalone",
     "dir":"auto",
     "lang":"es-US",
-    "name":"Dolar App (Demo)",
-    "short_name":" Dolar App (Demo)",
+    "name":"Dolar App",
+    "short_name":" Dolar App",
     "start_url":"/",
     "description":"Cotizacion del dolar en Argentina"}

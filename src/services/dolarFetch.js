@@ -1,9 +1,5 @@
 const baseUrl = 'https://criptoya.com/api/dolar'
 
-const getLastUpdate = async() => {
-    let response = await fetch(baseUrl).then(res => res.json)
-}
-
 const getDolarQuotes = async() => {
     let response = await fetch(baseUrl).then(res => res.json())
 

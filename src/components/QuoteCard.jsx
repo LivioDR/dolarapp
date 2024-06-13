@@ -1,6 +1,6 @@
 'use client'
 import '../styles/quoteCard.css'
-import { useState, useEffect, useRef } from 'react'
+import React,{ useState, useEffect, useRef } from 'react'
 import appConfig from '@/app/config/appConfig'
 import { Shrikhand } from 'next/font/google'
 const customFont = Shrikhand({weight: '400', subsets: ['latin']})

@@ -1,21 +1,6 @@
-'use client'
-import { useState, useEffect } from 'react'
 import '../styles/footer.css'
 
-const Footer = () => {
-
-    const [currency, setCurrency] = useState('')
-
-    useEffect(()=>{
-        const curr = localStorage.getItem('currency')
-        if(curr){
-            setCurrency(curr)
-        }
-        else{
-            setCurrency("USD")
-        }
-    },[])
-
+const Footer = ({currency}) => {
     return(
         <div className="footer">
             {

@@ -16,11 +16,10 @@ const quotesContainerStyle = {
 }
 
 
-const QuotesPage = () => {
+const QuotesPage = ({currency}) => {
     
     const [quotes, setQuotes] = useState([])
     const [loading, setLoading] = useState(true)
-    const [currency, setCurrency] = typeof window !== "undefined" ? useState(localStorage.getItem('currency')||"USD") : useState('USD')
     const [lastUpdate, setLastUpdate] = useState('')
     const autoRefreshRef = useRef()
     
@@ -31,7 +30,7 @@ const QuotesPage = () => {
         return arr
     }
 
-    const getLastUpdate = () => {
+    const getLastUpdate = (quotes) => {
         let arr = [...quotes]
         arr.sort((a,b) => b.lastUpdate - a.lastUpdate )
         let date = new Date(arr[0].lastUpdate)
@@ -40,11 +39,31 @@ const QuotesPage = () => {
     }
 
     useEffect(()=>{
+        if(appConfig.autoRefresh){
+            const getQuotes = async() => {
+                if(currency == "USD"){
+                    const resp = await getDolarQuotes().then(res => {res = swapBlue(res); setQuotes(res)})
+                }
+                else if(currency == "CAD"){
+                    const resp = await getCanadianDolarQuotes().then(res => {res = swapBlue(res); setQuotes(res)})
+                }
+                else if(currency == "AUD"){
+                    const resp = await getAustralianDolarQuotes().then(res => {res = swapBlue(res); setQuotes(res)})
+                }
+            }
+            const timerId = setInterval(()=>{
+                getQuotes()
+                }, appConfig.refreshTimeMs)
+            autoRefreshRef.current = timerId
+            }
+        return () => {
+            clearInterval(autoRefreshRef.current)
+            }
+        },[])
+                    
+    useEffect(()=>{
         const getQuotes = async() => {
-
-            setCurrency(localStorage.getItem('currency'))
-
-            if(!currency || currency == "USD"){
+            if(currency == "USD"){
                 const resp = await getDolarQuotes().then(res => {res = swapBlue(res); setQuotes(res)})
             }
             else if(currency == "CAD"){
@@ -54,22 +73,13 @@ const QuotesPage = () => {
                 const resp = await getAustralianDolarQuotes().then(res => {res = swapBlue(res); setQuotes(res)})
             }
         }
-        getQuotes()
-        if(appConfig.autoRefresh){
-            const timerId = setInterval(()=>{
-                getQuotes()
-            }, appConfig.refreshTimeMs)
-            autoRefreshRef.current = timerId
-        }
-        return () => {
-            clearInterval(autoRefreshRef.current)
-        }
-    },[])
+        getQuotes()            
+    },[currency])
 
     useEffect(()=> {
         if(quotes.length > 0){
             setLoading(false)
-            getLastUpdate()
+            getLastUpdate(quotes)
         }
         else(
             setLoading(true)
@@ -81,7 +91,7 @@ const QuotesPage = () => {
         return(
             <>
             <div className="quotesContainer" style={quotesContainerStyle}>
-                {quotes.map((quote) => <QuoteCard key={quote.name} id={quote.name} title={quote.name} price={quote.price} variation={quote.variation}></QuoteCard>)}
+                {quotes.map((quote) => <QuoteCard key={quote.name+quote.price} title={quote.name} price={quote.price} variation={quote.variation}></QuoteCard>)}
                 <p id='lastUpdate'>Last update: {lastUpdate}</p>
             </div>
             </>

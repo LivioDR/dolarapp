@@ -40,15 +40,15 @@ const QuotesPage = ({currency}) => {
 
     useEffect(()=>{
         if(appConfig.autoRefresh){
-            const getQuotes = async() => {
+            const getQuotes = () => {
                 if(currency == "USD"){
-                    const resp = await getDolarQuotes().then(res => {res = swapBlue(res); setQuotes(res)})
+                    getDolarQuotes().then(res => {res = swapBlue(res); setQuotes(res)})
                 }
                 else if(currency == "CAD"){
-                    const resp = await getCanadianDolarQuotes().then(res => {res = swapBlue(res); setQuotes(res)})
+                    getCanadianDolarQuotes().then(res => {res = swapBlue(res); setQuotes(res)})
                 }
                 else if(currency == "AUD"){
-                    const resp = await getAustralianDolarQuotes().then(res => {res = swapBlue(res); setQuotes(res)})
+                    getAustralianDolarQuotes().then(res => {res = swapBlue(res); setQuotes(res)})
                 }
             }
             const timerId = setInterval(()=>{
@@ -62,15 +62,15 @@ const QuotesPage = ({currency}) => {
         },[])
                     
     useEffect(()=>{
-        const getQuotes = async() => {
+        const getQuotes = () => {
             if(currency == "USD"){
-                const resp = await getDolarQuotes().then(res => {res = swapBlue(res); setQuotes(res)})
+                getDolarQuotes().then(res => {res = swapBlue(res); setQuotes(res)})
             }
             else if(currency == "CAD"){
-                const resp = await getCanadianDolarQuotes().then(res => {res = swapBlue(res); setQuotes(res)})
+                getCanadianDolarQuotes().then(res => {res = swapBlue(res); setQuotes(res)})
             }
             else if(currency == "AUD"){
-                const resp = await getAustralianDolarQuotes().then(res => {res = swapBlue(res); setQuotes(res)})
+                getAustralianDolarQuotes().then(res => {res = swapBlue(res); setQuotes(res)})
             }
         }
         getQuotes()            

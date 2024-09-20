@@ -1,36 +1,21 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# DolarApp
 
-## Getting Started
+A Progressive Web App that displays the current exchange rate of all different US dollar types that can be found in Argentina.
 
-First, run the development server:
+## Motivation
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+This project was requested by a client who needed to have access to all different exchange rates of the US Dollar in Argentina on a regular basis.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+During over a decade, different exchange rates have existed in Argentina depending on how do you get a foreign currency. More info about this topic can be found on this [not affiliated link](https://www.batimes.com.ar/news/economy/a-guide-to-argentinas-many-exchange-rates.phtml).
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## The solution
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+A Progressive Web Application was developed in Next.js as a Single Page Application (SPA) that displays all the different FX quotes for USD, CAD and AUS to ARS conversion based on client requirements.
+To cycle between the different available currencies you can tap on the header.
+All data is retrieved from the [CriptoYa Dollar API](https://criptoya.com/) and refresehd periodically with the use of a setInterval that clears after unmounting the component.
 
-## Learn More
+## Deployment status
 
-To learn more about Next.js, take a look at the following resources:
+The app was deployed on Netlify with an automated CI/CD pipeline and can be found in [this site](https://dolarapp.netlify.app/).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+[![Netlify Status](https://api.netlify.com/api/v1/badges/a34b3f2d-ce83-4414-9cde-fdbedd3a6d68/deploy-status)](https://app.netlify.com/sites/dolarapp/deploys)

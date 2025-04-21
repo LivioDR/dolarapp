@@ -62,7 +62,7 @@ const QuoteCard = (props) => {
     return(
         <>
         <div className="quoteCard">
-            <h1 className={`quoteTitle ${viewport >= 600 ? customFont.className : ''}`}>{title.toUpperCase()}</h1>
+            <h1 className={`quoteTitle ${customFont.className}`}>{title.toUpperCase()}</h1>
             <h2 className="quotePrice" style={priceStyle}>${price.toFixed(2)}</h2>
             <p style={deltaStyle}>{delta > 0 ? '▲' : '▼'} {String(delta.toFixed(2)).replace('-','')}%</p>
         </div>

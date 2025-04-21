@@ -7,10 +7,11 @@ import Loading from "@/components/Loading";
 import appConfig from "@/app/config/appConfig";
 
 const quotesContainerStyle = {
+    position: 'relative',
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    height: '80vh',
+    // height: '80vh',
     overflowY: 'scroll',
     backgroundColor: '#15002a',
 }

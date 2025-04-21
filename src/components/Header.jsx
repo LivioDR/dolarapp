@@ -20,13 +20,14 @@ const Header = ({currency, setCurrency}) => {
     }
 
     return(
-        <div id='headerContainer' onClick={toggleCurrency}>
+        <div id='headerContainer' onClick={toggleCurrency} className="cursor-pointer min-h-[100px] px-2 py-2 flex flex-row items-center justify-center">
             {
                 currency == "USD" &&
                 <>
                 <Image
                 src='/benjamin-franklin.png'
                 alt='Benjamin Franklin cartoon'
+                className="w-[100px] min-h-[100px] py-4"
                 width={100}
                 height={100}
                 />
@@ -41,6 +42,7 @@ const Header = ({currency, setCurrency}) => {
                 <Image
                 src='/maple-syrup.png'
                 alt='Maple Syrup bottle cartoon'
+                className="w-[100px] min-h-[100px] py-4"
                 width={100}
                 height={100}
                 />
@@ -55,6 +57,7 @@ const Header = ({currency, setCurrency}) => {
                 <Image
                 src='/kangaroo.png'
                 alt='Kangaroo cartoon'
+                className="w-[100px] min-h-[100px] py-4"
                 width={100}
                 height={100}
                 />

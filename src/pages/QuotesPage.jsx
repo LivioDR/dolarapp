@@ -7,10 +7,11 @@ import Loading from "@/components/Loading";
 import appConfig from "@/app/config/appConfig";
 
 const quotesContainerStyle = {
+    position: 'relative',
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    height: '80vh',
+    // height: '80vh',
     overflowY: 'scroll',
     backgroundColor: '#15002a',
 }
@@ -22,7 +23,7 @@ const QuotesPage = ({currency}) => {
     const [loading, setLoading] = useState(true)
     const [lastUpdate, setLastUpdate] = useState('')
     const autoRefreshRef = useRef()
-
+    
     const swapBlue = (arr) => {
         let blueValue = arr.filter(q => q.name === 'blue')
         arr.splice(arr.indexOf(...blueValue),1)

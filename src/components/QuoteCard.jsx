@@ -16,7 +16,7 @@ const QuoteCard = (props) => {
     const [priceStyle, setPriceStyle] = useState({backgroundColor: 'rgba(255, 255, 255, 0)'})
     const [delta, setDelta] = useState(props.variation)
     const [deltaStyle, setDeltaStyle] = useState({backgroundColor:`rgba(${delta < 0? 0 : 255}, ${delta >= 0 ? 0 : 255}, 0, 0)`, color: 'white'})
-    const timerRef = useRef()
+    const demoTimerRef = useRef()
 
     useEffect(()=>{
         if(appConfig.debug){
@@ -24,11 +24,10 @@ const QuoteCard = (props) => {
                 setPrice(price + Math.random()*100)
                 setDelta(delta + Math.random()*10 - 5)
             },5000+Math.random()*2000)
-            timerRef.current = demoInterval
-
+            demoTimerRef.current = demoInterval
         }
         return () => {
-            clearInterval(timerRef.current)
+            clearInterval(demoTimerRef.current)
         }
     },[])
 
@@ -63,7 +62,7 @@ const QuoteCard = (props) => {
     return(
         <>
         <div className="quoteCard">
-            <h1 className={`quoteTitle ${viewport >= 600 ? customFont.className : ''}`}>{title.toUpperCase()}</h1>
+            <h1 className={`quoteTitle ${customFont.className}`}>{title.toUpperCase()}</h1>
             <h2 className="quotePrice" style={priceStyle}>${price.toFixed(2)}</h2>
             <p style={deltaStyle}>{delta > 0 ? '▲' : '▼'} {String(delta.toFixed(2)).replace('-','')}%</p>
         </div>

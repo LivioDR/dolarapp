@@ -15,6 +15,8 @@ const Footer = ({currency}) => {
                 currency == "AUD" &&
                 <a href="https://www.flaticon.com/free-icons/australia" target="_blank" rel="noreferrer" title="australia icons">Australia icons created by Graficon - Flaticon</a>
             }
+            <p> - </p>
+            <p>Quotes data by <a href='https://docs.criptoya.com/' target='_blank' rel='noreferrer'><b>CriptoYa API</b></a></p>
         </div>
     )
 }

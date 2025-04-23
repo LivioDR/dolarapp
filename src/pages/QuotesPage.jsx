@@ -11,7 +11,6 @@ const quotesContainerStyle = {
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    // height: '80vh',
     overflowY: 'scroll',
     backgroundColor: '#15002a',
 }
@@ -34,9 +33,8 @@ const QuotesPage = ({currency}) => {
     const getLastUpdate = (quotes) => {
         let arr = [...quotes]
         arr.sort((a,b) => b.lastUpdate - a.lastUpdate )
-        let date = new Date(arr[0].lastUpdate)
-        let dateString = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()} GMT-03:00`
-        setLastUpdate(dateString)
+        let date = new Date(arr[0].lastUpdate * 1000) // date is stored in seconds
+        setLastUpdate(date.toLocaleString('es', {timeZone: 'America/Argentina/Buenos_Aires'}))
     }
 
     useEffect(()=>{

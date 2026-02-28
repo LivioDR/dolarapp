@@ -1,23 +1,34 @@
-import '../styles/footer.css'
-
-const Footer = ({currency}) => {
-    return(
-        <div className="footer">
-            {
-                currency == "USD" &&
-                <a href="https://www.flaticon.com/free-icons/benjamin-franklin" target="_blank" rel="noreferrer" title="benjamin franklin icons">Benjamin franklin icons created by Vitaly Gorbachev - Flaticon</a>
-            }
-            {
-                currency == "CAD" && 
-                <a href="https://www.flaticon.com/free-icons/maple-syrup" target="_blank" rel="noreferrer" title="maple syrup icons">Maple syrup icons created by Freepik - Flaticon</a>
-            }
-            {
-                currency == "AUD" &&
-                <a href="https://www.flaticon.com/free-icons/australia" target="_blank" rel="noreferrer" title="australia icons">Australia icons created by Graficon - Flaticon</a>
-            }
-            <p> - </p>
-            <p>Quotes data by <a href='https://docs.criptoya.com/' target='_blank' rel='noreferrer'><b>CriptoYa API</b></a></p>
-        </div>
-    )
+const Footer = () => {
+  return (
+    <footer className="w-full border-t border-border bg-background/80 backdrop-blur-sm">
+      <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-1 px-4 py-3 text-xs text-muted-foreground">
+        <span>
+          Quotes data by{" "}
+          <a
+            href="https://docs.criptoya.com/"
+            target="_blank"
+            rel="noreferrer"
+            className="font-medium text-foreground hover:text-accent transition-colors"
+          >
+            CriptoYa API
+          </a>
+        </span>
+        <span className="hidden sm:inline" aria-hidden="true">
+          {" \u00B7 "}
+        </span>
+        <span>
+            <a
+              href="https://livioreinoso.com"
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-foreground transition-colors"
+            >
+              Coded by Livio Reinoso
+            </a>
+        </span>
+      </div>
+    </footer>
+  )
 }
+
 export default Footer
